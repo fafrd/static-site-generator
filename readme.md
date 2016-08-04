@@ -4,13 +4,13 @@ very similar to https://github.com/botherder/habu, I lifted some code from that 
 
 ## usage
 place posts as markdown in the posts/directory. the first line should be
-	title: First post
+`title: First post`
 then an empty line, then markdown code
 
 you'll want to change the template in the templates/ folder
 
 generate with
-	python ./generate.py -d /path/to/web/root
+`python ./generate.py -d /path/to/web/root`
 
 ## example
 http://kianbradley.com
