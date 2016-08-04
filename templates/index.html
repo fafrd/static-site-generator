@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block nav %}
+	<ul>
+	{% for post in posts %}
+	<li><a href="/{{post.link}}">{{post.title}}</a></li>
+	{% endfor %}
+	<ul>
+{% endblock %}
+{% block content %}
+	{% for post in posts %}
+	<article>
+		{{post.content}}
+		<p style="font-style: italic;">posted {{post.date}}</p>
+	</article>
+	<hr>
+	{% endfor %}
+{% endblock %}

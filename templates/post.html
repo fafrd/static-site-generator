@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block nav %}
+	<ul>
+	{% for post in posts %}
+	<li><a href="/{{post.link}}">{{post.title}}</a></li>
+	{% endfor %}
+	<ul>
+{% endblock %}
+{% block content %}
+<article>
+	{% for post in posts %}
+	{% if post.active == 1 %}
+	{{post.content}}
+	<p style="font-style: italic;">posted {{post.date}}</p>
+	{% endif %}
+	{% endfor %}
+</article>
+{% endblock %}
