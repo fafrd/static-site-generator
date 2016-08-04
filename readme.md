@@ -7,7 +7,7 @@ place posts as markdown in the posts/directory. the first line should be
 `title: First post`
 then an empty line, then markdown code
 
-add sections of code like [code:bash]some bash script[/code]. (substitute python, xml, whatever for bash)
+add sections of code like `[code:bash]some bash script[/code]`. (substitute python, xml, whatever for bash)
 
 you'll want to change the template in the templates/ folder
 
