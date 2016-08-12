@@ -48,6 +48,9 @@ def generate_posts(destination):
 	posts = []
 
 	for post in os.listdir("posts"):
+		if post[0] == '.':
+			print("skipping post " + post)
+			continue;
 		orig = os.path.join("posts", post)
 		print("processing post: " + post)
 		raw = open(orig, "r").read()
@@ -65,6 +68,8 @@ def generate_posts(destination):
 		title = headers["title"]
 
 		filename = title + ".html"
+		filename = filename.replace(' ', '-').lower()
+
 		"""post object describes post content plus metadata. 'active' specifies which one is printed in the next for loop."""
 		post_obj = {'title': title, 'date': date, 'link': filename, 'content': content, 'active': 0}
 	
@@ -75,6 +80,7 @@ def generate_posts(destination):
 	
 	for post in posts:
 		filename = post['title'] + ".html"
+		filename = filename.replace(' ', '-').lower()
 		dest = os.path.join(destination, filename)
 		print("processing post2: " + post['title'])
 		template = env.get_template("post.html")
