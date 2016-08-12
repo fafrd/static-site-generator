@@ -12,6 +12,8 @@
 		{{post.content}}
 		<p style="font-style: italic;">posted {{post.date}}</p>
 	</article>
-	<hr>
+		{% if not loop.last %}
+			<hr>
+		{% endif %}
 	{% endfor %}
 {% endblock %}

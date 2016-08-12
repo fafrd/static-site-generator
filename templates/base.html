@@ -27,9 +27,13 @@ hr {
 div.navigation {
 	padding-top: 20px;
 }
-div.navigation > ul {
+div.navigation ul {
 	list-style-type: none;
 	padding-left: 0;
+}
+div.navigation ul li {
+	padding-bottom: 2px;
+	margin-bottom: 2px;
 }
 h1 {
 	font-size: 1.4em;
@@ -50,16 +54,19 @@ h3, h4, h5, h6 {
 			<a href="/"><p class="header-title">kian bradley's blog</p></a>
 		</header>
 		<div class="navigation col-sm-3 col-sm-push-9">
-			<a href="https://github.com/fafrd">github</a><br/>
-			<a href="https://www.linkedin.com/in/kian-bradley-6a0a12104">linkedin</a>
-			</p>
+			<ul>
+			<li><a href="https://github.com/fafrd">github.com/fafrd</a></li>
+			<li><a href="https://www.linkedin.com/in/kian-bradley-6a0a12104">linkedin.com/in/kian-bradley-6a0a12104</a></li>
+			</ul>
 			<hr>
 		{% block nav %}
 		{% endblock %}
 		</div>
 		<div class="col-sm-9 col-sm-pull-3">
 			{% block content %}{% endblock %}
+			<hr>
 			<footer>
+				<p>page generated [TODO date]. <a href="https://github.com/fafrd/static-site-generator">view source</a></p>
 			</footer>
 		</div>
 	</div>
