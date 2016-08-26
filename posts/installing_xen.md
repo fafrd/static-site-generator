@@ -31,25 +31,28 @@ There are a lot of options that go into making a xen cfg file. Below is provided
 There are two ways to run Xen: HVM or PV mode. HVM stands for Hardware Virtualization Mode, and PV stands for Paravirtualized. Traditionally, HVM provided more efficient emulation, as it gave the guest more direct access to hardware; paravirtualization provides a "paravirtualized" interface for the guest to run on, and requires the guest have paravirtualized driver support. Recently, better paravirtualized driver support in Linux and better interaction between Xen and hardware virtualization has led to paravirtualized mode actually being the better option over HVM. (Interestingly, one of the biggest places PV shines over HVM is in page table and TLB virtualization; see [wiki.xen.org/wiki/X86_Paravirtualised_Memory_Management](https://wiki.xen.org/wiki/X86_Paravirtualised_Memory_Management)).
 
 ### sample xen.cfg
-	[code:python]name = "example ubuntu guest"
-	\# memory in megabytes
-	memory = 2048
-	\# number of cpus, which cpus this guest is pinned to
-	vcpus = 4
-	cpus = "5-8"
+*I recommend you follow [this guide](https://help.ubuntu.com/community/Xen) on how to set up a new Ubuntu guest using their bootloader code. If you already have a prepared disk image, skip the kernel and ramdisk images and go ahead and uncomment bootloader.*
 
-	\# tsc_mode is something complicated to do with the emulation of x86 timer instructions. read more here: [xenbits.xen.org/docs/4.3-testing/misc/tscmode.txt](https://xenbits.xen.org/docs/4.3-testing/misc/tscmode.txt)
-	tsc_mode = "native"
+*tsc_mode is something complicated to do with the emulation of x86 timer instructions. read more here: [xenbits.xen.org/docs/4.3-testing/misc/tscmode.txt](https://xenbits.xen.org/docs/4.3-testing/misc/tscmode.txt)*
 
-	\# I recommend you follow [this guide](https://help.ubuntu.com/community/Xen) on how to set up a new Ubuntu guest using their bootloader code. If you already have a prepared disk image, skip the kernel and ramdisk images and go ahead and uncomment bootloader.
-	kernel = "/var/lib/xen/images/ubuntu-netboot/trusty14LTS/vmlinuz"
-	ramdisk = "/var/lib/xen/images/ubuntu-netboot/trusty14LTS/initrd.gz"
-	\#bootloader = "/usr/lib/xen-4.4/bin/pygrub"
+[code:python]
+name = "example ubuntu guest"
+# memory in megabytes
+memory = 2048
+# number of cpus, which cpus this guest is pinned to
+vcpus = 4
+cpus = "5-8"
 
-	disk = ['/dev/pcp-d-15-vg/xen_1,raw,xvda,rw']
+tsc_mode = "native"
 
-	\# see my xen networking article for info on how to set up networking: [/setting-up-nat-networking-in-xen-using-virsh.html](setting-up-nat-networking-in-xen-using-virsh.html)
-	[/code]
+kernel = "/var/lib/xen/images/ubuntu-netboot/trusty14LTS/vmlinuz"
+ramdisk = "/var/lib/xen/images/ubuntu-netboot/trusty14LTS/initrd.gz"
+#bootloader = "/usr/lib/xen-4.4/bin/pygrub"
+
+disk = ['/dev/pcp-d-15-vg/xen_1,raw,xvda,rw']
+
+# see my xen networking article for info on how to set up networking: [/setting-up-nat-networking-in-xen-using-virsh.html](setting-up-nat-networking-in-xen-using-virsh.html)
+[/code]
 
 ## Starting up Xen
 The Xen control program is called xl. Given config file "xen.cfg", start up a guest domain like
