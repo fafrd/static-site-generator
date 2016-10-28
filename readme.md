@@ -11,7 +11,9 @@ add sections of code like `[code:bash]some bash script[/code]`. (substitute pyth
 
 you'll want to change the template in the templates/ folder
 
-generate with
+install some dependencies:
+`sudo pip install mistune pyyaml markdown jinja2 pygments`
+generate HTML with 
 `python ./generate.py -d /path/to/web/root`
 
 ## example
