@@ -50,7 +50,7 @@ def generate_posts(destination):
 	for post in os.listdir("posts"):
 		if post[0] == '.':
 			print("skipping post " + post)
-			continue;
+			continue
 		orig = os.path.join("posts", post)
 		print("processing post: " + post)
 		raw = open(orig, "r").read()
@@ -65,7 +65,16 @@ def generate_posts(destination):
 		else:
 			date = str(time.strftime("%Y-%m-%d %H:%M:%S"))
 
-		title = headers["title"]
+		if headers.has_key("tags"):
+			tags = headers["tags"]
+		else:
+			tags = []
+
+		if headers.has_key("title") == 0:
+			print("markdown file does not contain a title! see examples. skipping...")
+			return
+		else:
+			title = headers["title"]
 
 		filename = title + ".html"
 		filename = filename.replace(' ', '-').lower()
