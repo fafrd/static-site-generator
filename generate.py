@@ -19,7 +19,7 @@ try:
 	from pygments.formatters import HtmlFormatter
 	from pygments.lexers import get_lexer_by_name, TextLexer
 except ImportError as e:
-	print(red("Unable to import dependency:") + str(e))
+	print("Unable to import dependency:" + str(e))
 	sys.exit(-1)
 
 env = Environment()
